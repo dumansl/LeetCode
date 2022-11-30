@@ -1,10 +1,7 @@
 void main(List<String> args) {
   List<int> addTwoNumbers(List<int> l1, List<int> l2) {
-    List<int> sum = [];
     List<int> smallList = l1.length < l2.length ? l1 : l2;
-    print(smallList);
     List<int> bigList = l1.length < l2.length ? l2 : l1;
-    print(bigList);
 
     int difference = bigList.length - smallList.length;
 
@@ -13,12 +10,22 @@ void main(List<String> args) {
         smallList.add(0);
       }
     }
+
+    List<int> sum = List.filled(bigList.length, 0);
+
     for (int i = 0; i <= bigList.length - 1; i++) {
       int result = l1[i] + l2[i];
-      sum.add(result);
+      if (i > 0) {
+        result += 1;
+      }
+      if (result >= 10) {
+        result = result % 10;
+      }
+      sum[i] = result;
     }
     return sum;
   }
 
   print(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
 }
+
